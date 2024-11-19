@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Projects */
+
+    /* Language and Environment */
+    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": ["ES2022"],
+
+    /* Modules */
+    "module": "ES2022" /* Specify what module code is generated. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "moduleResolution": "Node",
+    "noEmit": true,
+
+    /* Type Checking */
+    "strict": true /* Enable all strict type-checking options. */,
+    "allowJs": true,
+    "checkJs": true,
+    "typeRoots": ["./node_modules/@types", "./@types"],
+    "paths": {
+      "@types/eslint-plugin-jsx-a11y": ["./@types/eslint-plugin-jsx-a11y"],
+      "@types/eslint-plugin-react-hooks": [
+        "./@types/eslint-plugin-react-hooks"
+      ],
+      "@types/eslint-plugin-react-compiler": [
+        "./@types/eslint-plugin-react-compiler"
+      ]
+    }
+  },
+  "include": [
+    "./src/*.js",
+    "base.js",
+    "index.js",
+    "next.js",
+    "node.js",
+    "react.js"
+  ]
+}
