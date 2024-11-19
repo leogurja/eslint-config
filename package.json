@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format=esm --clean",
-    "dts": "tsc"
+    "check": "tsc"
   },
   "dependencies": {
     "@eslint/js": "^9.14.0",
