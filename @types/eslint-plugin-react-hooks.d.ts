@@ -1,6 +1,7 @@
-import type { Linter, Rule } from "eslint";
 
 declare module "eslint-plugin-react-hooks" {
+  import type { Linter, Rule } from "eslint";
+
   export const configs: {
     recommended: {
       plugins: string[];

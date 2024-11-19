@@ -2,23 +2,12 @@
   "compilerOptions": {
     "target": "es2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "lib": ["ES2022"],
-    "module": "ES2022" /* Specify what module code is generated. */,
+    "module": "NodeNext" /* Specify what module code is generated. */,
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "moduleResolution": "Node",
-    "noEmit": true,
-    "strict": true /* Enable all strict type-checking options. */,
-    "allowJs": true,
-    "checkJs": true,
-    "typeRoots": ["./node_modules/@types", "./@types"],
-    "paths": {
-      "@types/eslint-plugin-jsx-a11y": ["./@types/eslint-plugin-jsx-a11y"],
-      "@types/eslint-plugin-react-hooks": [
-        "./@types/eslint-plugin-react-hooks"
-      ],
-      "@types/eslint-plugin-react-compiler": [
-        "./@types/eslint-plugin-react-compiler"
-      ]
-    }
+    "moduleResolution": "NodeNext",
+    "declaration": true,
+    "outDir": "dist",
+    "strict": true /* Enable all strict type-checking options. */
   },
-  "include": ["src/*.ts"]
+  "include": ["src"]
 }
