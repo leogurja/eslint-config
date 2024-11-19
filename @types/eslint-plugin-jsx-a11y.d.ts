@@ -1,30 +1,30 @@
-import type { ESLint, Linter, Rule } from 'eslint'
+import type { ESLint, Linter, Rule } from "eslint";
 
 interface A11yOldConfig {
-  parserOptions: Linter.ParserOptions,
-  plugins: string[],
-  rules: Linter.RulesRecord
+  parserOptions: Linter.ParserOptions;
+  plugins: string[];
+  rules: Linter.RulesRecord;
 }
 
 interface A11yConfig {
-  languageOptions: Linter.LanguageOptions,
-  name: string,
-  plugins: Record<string, ESLint.Plugin>,
-  rules: Linter.RulesRecord
+  languageOptions: Linter.LanguageOptions;
+  name: string;
+  plugins: Record<string, ESLint.Plugin>;
+  rules: Linter.RulesRecord;
 }
 
-declare module 'eslint-plugin-jsx-a11y' {
+declare module "eslint-plugin-jsx-a11y" {
   export const meta: {
-    name: string,
-    version: string
-  }
-  export const rules: Record<string, Rule.RuleModule>
+    name: string;
+    version: string;
+  };
+  export const rules: Record<string, Rule.RuleModule>;
   export const configs: {
-    recommended: A11yOldConfig,
-    strict: A11yOldConfig
-  }
+    recommended: A11yOldConfig;
+    strict: A11yOldConfig;
+  };
   export const flatConfigs: {
-    recommended: A11yConfig,
-    strict: A11yConfig
-  }
+    recommended: A11yConfig;
+    strict: A11yConfig;
+  };
 }

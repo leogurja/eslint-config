@@ -20,15 +20,16 @@
   "license": "MIT",
   "author": "Leonardo Gurgel",
   "type": "module",
-  "main": "./index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "base.js",
-    "index.js",
-    "next.js",
-    "node.js",
-    "react.js",
+    "dist",
     "@types"
   ],
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format=esm --clean",
+    "dts": "tsc"
+  },
   "dependencies": {
     "@eslint/js": "^9.14.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -46,6 +47,7 @@
     "prettier": "^3.3.3",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.3",
+    "tsup": "^8.3.5",
     "typescript": "^5.6.3"
   },
   "peerDependencies": {

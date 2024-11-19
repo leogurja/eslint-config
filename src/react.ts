@@ -4,9 +4,9 @@ import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
 import globals from "globals";
 import ts from "typescript-eslint";
-import base from "./base";
+import { base } from "./base";
 
-const react = ts.config(base, jsxA11yPlugin.flatConfigs.recommended, {
+export const react = ts.config(...base, jsxA11yPlugin.flatConfigs.recommended, {
   ...reactPlugin.configs.flat?.recommended,
   ...reactPlugin.configs.flat?.["jsx-runtime"],
   plugins: {
@@ -24,5 +24,3 @@ const react = ts.config(base, jsxA11yPlugin.flatConfigs.recommended, {
     },
   },
 });
-
-export default react;

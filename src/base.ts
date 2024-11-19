@@ -5,9 +5,9 @@ import ts from "typescript-eslint";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const base = ts.config(
+export const base = ts.config(
   js.configs.recommended,
-  ts.configs.strict,
+  ...ts.configs.strict,
   {
     files: ["**/*.{ts,tsx,cts,mts}"],
     extends: [ts.configs.strictTypeChecked, ts.configs.stylisticTypeChecked],
@@ -24,5 +24,3 @@ const base = ts.config(
     extends: [ts.configs.disableTypeChecked],
   },
 );
-
-export default base;

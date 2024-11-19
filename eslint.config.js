@@ -1,6 +1,6 @@
 // @ts-check
 
 import ts from "typescript-eslint";
-import base from "./base.js";
+import config from "./dist/index.js";
 
-export default ts.config(base);
+export default ts.config(config.base);
