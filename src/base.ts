@@ -1,17 +1,76 @@
+/// <reference path="../@types/eslint-plugin-jsdoc.d.ts" />
+
 import js from "@eslint/js";
+import jsdocPlugin from "eslint-plugin-jsdoc";
+import neostandard, { resolveIgnoresFromGitignore } from "neostandard";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import ts from "typescript-eslint";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export const base = ts.config(js.configs.recommended, ...ts.configs.strict, {
-  files: ["**/*.{ts,tsx,cts,mts}"],
-  extends: [ts.configs.strictTypeChecked, ts.configs.stylisticTypeChecked],
-  languageOptions: {
-    parserOptions: {
-      projectService: true,
-      tsconfigRootDir: __dirname,
+export interface BaseOptions {
+  globals: Record<string, boolean | "readable" | "writable" | "off">;
+}
+
+export function base({ globals }: BaseOptions) {
+  return ts.config(
+    js.configs.recommended,
+    ts.configs.strictTypeChecked,
+    ts.configs.stylisticTypeChecked,
+    // ignore files on .gitignore by default
+    neostandard({
+      ignores: resolveIgnoresFromGitignore(),
+    }),
+    // good rules to enable
+    {
+      languageOptions: {
+        globals,
+      },
+      rules: {
+        "@typescript-eslint/consistent-type-imports": [
+          "error",
+          {
+            disallowTypeAnnotations: false,
+            prefer: "type-imports",
+            fixStyle: "inline-type-imports",
+          },
+        ],
+        "@typescript-eslint/no-import-type-side-effects": "error",
+        "import/no-default-export": "warn",
+        "import/no-self-import": "error",
+        "import/no-absolute-path": "error",
+      },
     },
-  },
-});
+    // for ts only files
+    {
+      ignores: ["**/*.{js,cjs,mjs}x?"],
+      plugins: {
+        jsdoc: jsdocPlugin,
+      },
+      languageOptions: {
+        parserOptions: {
+          projectService: true,
+          tsconfigRootDir: __dirname,
+        },
+      },
+      rules: {
+        ...jsdocPlugin.configs["flat/contents-typescript"].rules,
+        ...jsdocPlugin.configs["flat/logical-typescript"].rules,
+        ...jsdocPlugin.configs["flat/stylistic-typescript"].rules,
+      },
+    },
+    // for non ts files
+    {
+      files: ["**/*.{js,cjs,mjs}x?"],
+      plugins: {
+        jsdoc: jsdocPlugin,
+      },
+      rules: {
+        ...jsdocPlugin.configs["flat/contents-typescript-flavor"].rules,
+        ...jsdocPlugin.configs["flat/logical-typescript-flavor"].rules,
+        ...jsdocPlugin.configs["flat/stylistic-typescript-flavor"].rules,
+      },
+    },
+  );
+}

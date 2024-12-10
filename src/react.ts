@@ -1,30 +1,91 @@
 /// <reference path="../@types/eslint-plugin-jsx-a11y.d.ts" />
 /// <reference path="../@types/eslint-plugin-react-hooks.d.ts" />
+/// <reference path="../@types/eslint-plugin-react-refresh.d.ts" />
 /// <reference path="../@types/eslint-plugin-react-compiler.d.ts" />
 
+import { fixupPluginRules } from "@eslint/compat";
+import { ESLint } from "eslint";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 import reactPlugin from "eslint-plugin-react";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
-import reactHooksPlugin from "eslint-plugin-react-hooks";
-import globals from "globals";
+import legacyReactHooksPlugin from "eslint-plugin-react-hooks";
+import reactRefreshPlugin from "eslint-plugin-react-refresh";
+import { browser, serviceworker } from "globals";
 import ts from "typescript-eslint";
-import { base } from "./base.js";
+import { base, type BaseOptions } from "./base.js";
 
-export const react = ts.config(...base, jsxA11yPlugin.flatConfigs.recommended, {
-  ...reactPlugin.configs.flat?.recommended,
-  ...reactPlugin.configs.flat?.["jsx-runtime"],
-  plugins: {
-    "react-compiler": reactCompilerPlugin,
-    "react-hooks": reactHooksPlugin,
-  },
-  rules: {
-    ...reactHooksPlugin.configs.recommended.rules,
-    "react-compiler/react-compiler": "warn",
-  },
-  languageOptions: {
-    globals: {
-      ...globals.serviceworker,
-      ...globals.browser,
+const reactHooksPlugin = fixupPluginRules(legacyReactHooksPlugin);
+
+export interface ReactOptions extends BaseOptions {
+  vite?: boolean;
+  jsxRuntime?: boolean;
+}
+
+export function react({
+  vite,
+  jsxRuntime = true,
+  globals,
+  ...options
+}: ReactOptions) {
+  return ts.config(
+    base({
+      ...options,
+      globals: {
+        ...browser,
+        ...serviceworker,
+        ...globals,
+      },
+    }),
+    // eslint-plugin-jsx-a11y
+    jsxA11yPlugin.flatConfigs.strict,
+    // eslint-plugin-react
+    {
+      plugins: {
+        react: reactPlugin as ESLint.Plugin,
+      },
+      languageOptions: {
+        parserOptions: {
+          ecmaFeatures: {
+            jsx: true,
+          },
+        },
+      },
+      rules: {
+        ...reactPlugin.configs.flat!.recommended.rules,
+        ...(jsxRuntime ? reactPlugin.configs.flat!["jsx-runtime"].rules : {}),
+      },
     },
-  },
-});
+    // eslint-plugin-react-hooks
+    {
+      plugins: {
+        "react-hooks": reactHooksPlugin,
+      },
+      rules: {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+      },
+    },
+    // eslint-plugin-react-refresh
+    {
+      plugins: {
+        "react-refresh": reactRefreshPlugin,
+        "jsx-a11y": jsxA11yPlugin,
+      },
+      rules: {
+        "react-refresh/only-export-components": [
+          "warn",
+          { allowConstantExport: vite },
+        ],
+      },
+    },
+    // eslint-plugin-react-compiler
+    {
+      plugins: {
+        "react-compiler": reactCompilerPlugin,
+      },
+      rules: {
+        "react-compiler/react-compiler": "error",
+      },
+    },
+  );
+}
