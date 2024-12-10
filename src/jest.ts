@@ -6,7 +6,7 @@ export interface JestOptions extends BaseOptions {
   env: "node" | "browser";
 }
 
-export function jest(options: BaseOptions) {
+export function jest(options: BaseOptions = {}) {
   return ts.config(
     base(options),
     {

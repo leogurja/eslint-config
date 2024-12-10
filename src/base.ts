@@ -1,6 +1,8 @@
 /// <reference path="../@types/eslint-plugin-jsdoc.d.ts" />
+/// <reference path="../@types/eslint-plugin-import.d.ts" />
 
 import js from "@eslint/js";
+import importPlugin from "eslint-plugin-import";
 import jsdocPlugin from "eslint-plugin-jsdoc";
 import neostandard, { resolveIgnoresFromGitignore } from "neostandard";
 import { dirname } from "node:path";
@@ -10,14 +12,15 @@ import ts from "typescript-eslint";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export interface BaseOptions {
-  globals: Record<string, boolean | "readable" | "writable" | "off">;
+  globals?: Record<string, boolean | "readable" | "writable" | "off">;
 }
 
-export function base({ globals }: BaseOptions) {
+export function base({ globals }: BaseOptions = {}) {
   return ts.config(
     js.configs.recommended,
     ts.configs.strictTypeChecked,
     ts.configs.stylisticTypeChecked,
+    importPlugin.flatConfigs.recommended,
     // ignore files on .gitignore by default
     neostandard({
       ignores: resolveIgnoresFromGitignore(),
@@ -44,6 +47,7 @@ export function base({ globals }: BaseOptions) {
     },
     // for ts only files
     {
+      ...importPlugin.flatConfigs.typescript,
       ignores: ["**/*.{js,cjs,mjs}x?"],
       plugins: {
         jsdoc: jsdocPlugin,
@@ -55,6 +59,7 @@ export function base({ globals }: BaseOptions) {
         },
       },
       rules: {
+        ...importPlugin.flatConfigs.typescript.rules,
         ...jsdocPlugin.configs["flat/contents-typescript"].rules,
         ...jsdocPlugin.configs["flat/logical-typescript"].rules,
         ...jsdocPlugin.configs["flat/stylistic-typescript"].rules,

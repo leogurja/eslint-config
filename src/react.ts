@@ -5,12 +5,13 @@
 
 import { fixupPluginRules } from "@eslint/compat";
 import { ESLint } from "eslint";
+import importPlugin from "eslint-plugin-import";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
 import reactPlugin from "eslint-plugin-react";
 import reactCompilerPlugin from "eslint-plugin-react-compiler";
 import legacyReactHooksPlugin from "eslint-plugin-react-hooks";
 import reactRefreshPlugin from "eslint-plugin-react-refresh";
-import { browser, serviceworker } from "globals";
+import _globals from "globals";
 import ts from "typescript-eslint";
 import { base, type BaseOptions } from "./base.js";
 
@@ -26,16 +27,20 @@ export function react({
   jsxRuntime = true,
   globals,
   ...options
-}: ReactOptions) {
+}: ReactOptions = {}) {
   return ts.config(
     base({
       ...options,
       globals: {
-        ...browser,
-        ...serviceworker,
+        ..._globals.browser,
+        ..._globals.serviceworker,
         ...globals,
       },
     }),
+    // eslint-plugin-import
+    {
+      settings: importPlugin.flatConfigs.react.settings,
+    },
     // eslint-plugin-jsx-a11y
     jsxA11yPlugin.flatConfigs.strict,
     // eslint-plugin-react

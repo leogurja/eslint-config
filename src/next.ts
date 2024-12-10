@@ -10,7 +10,7 @@ const nextPlugin = fixupPluginRules(legacyNextPlugin);
 
 interface NextOptions extends Omit<ReactOptions, "jsxRuntime" | "vite"> {}
 
-export function next({ globals }: NextOptions) {
+export function next({ globals }: NextOptions = {}) {
   return ts.config(
     react({
       globals: {

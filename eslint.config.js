@@ -1,4 +1,8 @@
 // @ts-check
-import { base, config } from "./src/index.js";
+import globals from "globals";
+import { base, config, jest } from "./dist/index.js";
 
-export default config(base);
+export default config(base({ globals: globals.node }), {
+  files: ["test/**/*.ts"],
+  ...jest(),
+});
