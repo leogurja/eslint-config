@@ -6,9 +6,9 @@ declare module "eslint-plugin-react-refresh" {
     rules: Record<string, Linter.RulesRecord>;
   };
 
-  const rules: Record<string, Rule.RuleModule>;
+  export const rules: Record<string, Rule.RuleModule>;
 
-  const configs: {
+  export const configs: {
     recommended: Config;
     vite: Config;
   };

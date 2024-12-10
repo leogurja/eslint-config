@@ -12,6 +12,6 @@ declare module "eslint-plugin-jsdoc" {
 
   type Configs = `flat/${ConfigGroups}${ConfigVariants}${ErrorLevels}`;
 
-  const configs: Record<Configs, Linter.Config>;
-  const rules: Record<string, Rule.RuleModule>;
+  export const configs: Record<Configs, Linter.Config>;
+  export const rules: Record<string, Rule.RuleModule>;
 }
