@@ -1,5 +1,5 @@
 {
-  "name": "@gurgelio/eslint-config",
+  "name": "@gurja/eslint-config",
   "version": "1.0.0",
   "description": "A simple to use ESlint configuration",
   "keywords": [
@@ -11,11 +11,11 @@
     "next",
     "node"
   ],
-  "homepage": "https://github.com/gurgelio/eslint-config#readme",
-  "bugs": "https://github.com/gurgelio/eslint-config/issues",
+  "homepage": "https://github.com/leogurja/eslint-config#readme",
+  "bugs": "https://github.com/leogurja/eslint-config/issues",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gurgelio/eslint-config.git"
+    "url": "git+https://github.com/leogurja/eslint-config.git"
   },
   "license": "MIT",
   "author": "Leonardo Gurgel",
@@ -34,6 +34,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "format": "prettier -w .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest"

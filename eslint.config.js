@@ -1,7 +1,7 @@
-// @ts-check
-import { config, configs } from "@gurgelio/eslint-config";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+// @ts-check
+import { config, configs } from "@gurja/eslint-config";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 

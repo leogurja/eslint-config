@@ -1,4 +1,3 @@
-
 declare module "eslint-plugin-react-compiler" {
   import type { Rule } from "eslint";
 

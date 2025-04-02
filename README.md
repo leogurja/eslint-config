@@ -1,4 +1,4 @@
-# @gurgelio/eslint-config
+# @gurja/eslint-config
 
 Configuring ESLint is always annoying and can even be a nightmare sometimes.
 This package includes a few opinionated configs
@@ -9,19 +9,19 @@ You can install it with npm, Yarn or pnpm
 
 ```sh
 # npm
-npm i -D @gurgelio/eslint-config eslint
+npm i -D @gurja/eslint-config eslint
 
 # Yarn
-yarn add -D @gurgelio/eslint-config eslint
+yarn add -D @gurja/eslint-config eslint
 
 # pnpm
-pnpm add -D @gurgelio/eslint-config eslint
+pnpm add -D @gurja/eslint-config eslint
 ```
 
 Inside `eslint.config.js` (or `eslint.config.mjs` if you don't have `"type": "module"` on your `package.json`):
 
 ```javascript
-import { config, node } from "@gurgelio/eslint-config";
+import { config, node } from "@gurja/eslint-config";
 
 export default config(
   node,
@@ -54,7 +54,7 @@ Here's a kitchen sink example:
 
 ```javascript
 // eslint.configs.mjs
-import { base, config, react, next } from "@gurgelio/eslint-config";
+import { base, config, react, next } from "@gurja/eslint-config";
 
 export default config(
   {

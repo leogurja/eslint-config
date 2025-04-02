@@ -1,4 +1,3 @@
-
 declare module "eslint-plugin-react-hooks" {
   import type { Linter, Rule } from "eslint";
 
