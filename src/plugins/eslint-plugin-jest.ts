@@ -1,10 +1,11 @@
 import eslintPluginJest from "eslint-plugin-jest";
-import { basename, dirname } from "node:path";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import { dirname } from "node:path";
+import type { ConfigWithExtends } from "typescript-eslint";
+import getTsConfigFiles from "../utils/getTsconfigFiles.js";
 
-export const jestPlugin = [
+export const defaultRules = [
+  eslintPluginJest.configs["flat/style"],
   {
-    ...eslintPluginJest.configs["flat/style"],
     rules: {
       "jest/consistent-test-it": "warn",
       "jest/no-conditional-in-test": "error",
@@ -25,27 +26,23 @@ export const jestPlugin = [
       "jest/require-hook": "error",
     },
   },
-  {
-    files: ["**/*.{test,spec}.{ts,mts,cts}"],
-    rules: {
-      "jest/no-untyped-mock-factory": "warn",
-      "jest/unbound-method": "error",
-    },
-  },
-] satisfies InfiniteDepthConfigWithExtends;
+] satisfies ConfigWithExtends[];
 
-export const jestPluginTypeChecked = (tsconfig: string) =>
-  ({
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          defaultProject: basename(tsconfig),
+export function jestPlugin(tsconfig: string): ConfigWithExtends[] {
+  return [
+    ...defaultRules,
+    {
+      files: getTsConfigFiles(tsconfig),
+      rules: {
+        "jest/no-untyped-mock-factory": "warn",
+        "jest/unbound-method": "error",
+      },
+      languageOptions: {
+        parserOptions: {
+          project: tsconfig,
+          tsconfigRootDir: dirname(tsconfig),
         },
-        tsconfigRootDir: dirname(tsconfig),
       },
     },
-    rules: {
-      "jest/no-untyped-mock-factory": "warn",
-      "jest/unbound-method": "error",
-    },
-  }) satisfies InfiniteDepthConfigWithExtends;
+  ];
+}

@@ -1,5 +1,5 @@
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const reactHooksPlugin = [
   {
@@ -11,4 +11,4 @@ export const reactHooksPlugin = [
       "react-hooks/exhaustive-deps": "warn",
     },
   },
-] satisfies InfiniteDepthConfigWithExtends;
+] satisfies ConfigWithExtends[];

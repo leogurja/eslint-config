@@ -21,12 +21,12 @@ pnpm add -D @gurja/eslint-config eslint
 Inside `eslint.config.js` (or `eslint.config.mjs` if you don't have `"type": "module"` on your `package.json`):
 
 ```javascript
-import { config, node } from "@gurja/eslint-config";
+import { react } from "@gurja/eslint-config";
 
-export default config(
-  node,
-  // any other ESLint you'd want to add as well
-);
+export default react({
+  vite: true
+  // any other ESLint config you'd want to add as well
+}),
 ```
 
 ## Available Configs
@@ -48,29 +48,34 @@ Includes [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react
 
 Includes all of [React's](#react) plugins, and [@next/eslint-plugin-next](https://nextjs.org/docs/app/api-reference/config/eslint)
 
+### Jest
+
+Includes all of Base, and [eslint-plugin-jest](https://github.com/jest-community/eslint-plugin-jest#readme)
+
 ## Advanced Setup
 
 Here's a kitchen sink example:
 
 ```javascript
 // eslint.configs.mjs
-import { base, config, react, next } from "@gurja/eslint-config";
+import { base, next, globals } from "@gurja/eslint-config";
 
-export default config(
-  {
-    files: ["packages/tokens/**/*.ts"],
-    extends: [base],
-  },
-  {
-    files: ["packages/react-project/**/*.{ts,tsx}"],
-    extends: [react],
-  },
-  {
+export default [
+  // by default it uses the tsconfig.json at the same level as the eslint config file
+  ...base({
+    files: ["packages/jquery-app/**/*.js"],
+    languageOptions: {
+      globals: globals.jest,
+    },
+  }),
+  ...next({
+    // you can use another tsconfig
+    tsconfig: "packages/next-project/tsconfig.json",
     files: ["packages/next-project/**/*.{ts,tsx,js,jsx}"],
-    extends: [next],
     rules: {
+      // customize your rules if you find it necessary
       "react-compiler/react-compiler": "off",
     },
-  },
-);
+  }),
+];
 ```

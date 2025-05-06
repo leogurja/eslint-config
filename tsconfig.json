@@ -6,7 +6,9 @@
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "moduleResolution": "NodeNext",
     "skipLibCheck": true,
+    "rootDir": ".",
     "declaration": true,
+    "allowJs": true,
     "outDir": "dist",
     "strict": true /* Enable all strict type-checking options. */
   },

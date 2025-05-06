@@ -1,5 +1,5 @@
 import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const reactCompilerPlugin = {
   plugins: {
@@ -8,4 +8,4 @@ export const reactCompilerPlugin = {
   rules: {
     "react-compiler/react-compiler": "error",
   },
-} satisfies InfiniteDepthConfigWithExtends;
+} satisfies ConfigWithExtends;

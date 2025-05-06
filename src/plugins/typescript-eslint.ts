@@ -1,10 +1,10 @@
-import { basename, dirname } from "node:path";
-import ts from "typescript-eslint";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import { dirname } from "node:path";
+import ts, { type ConfigWithExtends } from "typescript-eslint";
+import getTsConfigFiles from "../utils/getTsconfigFiles.js";
 
-export const typescriptEslint = [
-  ts.configs.strict,
-  ts.configs.stylistic,
+const defaultRules = [
+  ...ts.configs.strict,
+  ...ts.configs.stylistic,
   {
     rules: {
       "@typescript-eslint/consistent-type-imports": [
@@ -18,19 +18,23 @@ export const typescriptEslint = [
       "@typescript-eslint/no-import-type-side-effects": "error",
     },
   },
-] satisfies InfiniteDepthConfigWithExtends;
+] satisfies ConfigWithExtends[];
 
-export const typescriptEslintTypeChecked = (tsconfig: string) => [
-  ts.configs.strictTypeCheckedOnly,
-  ts.configs.stylisticTypeCheckedOnly,
-  {
-    languageOptions: {
-      parserOptions: {
-        projectService: {
-          defaultProject: basename(tsconfig),
+export function typescriptEslint(tsconfig: string): ConfigWithExtends[] {
+  return [
+    ...defaultRules,
+    {
+      files: getTsConfigFiles(tsconfig),
+      extends: [
+        ...ts.configs.strictTypeCheckedOnly,
+        ...ts.configs.stylisticTypeCheckedOnly,
+      ],
+      languageOptions: {
+        parserOptions: {
+          project: tsconfig,
+          tsconfigRootDir: dirname(tsconfig),
         },
-        tsconfigRootDir: dirname(tsconfig),
       },
     },
-  },
-];
+  ];
+}

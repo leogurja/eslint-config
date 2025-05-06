@@ -5,17 +5,14 @@ import { reactCompilerPlugin } from "../plugins/eslint-plugin-react-compiler.js"
 import { reactHooksPlugin } from "../plugins/eslint-plugin-react-hooks.js";
 import { reactRefreshPlugin } from "../plugins/eslint-plugin-react-refresh.js";
 import { reactPlugin } from "../plugins/eslint-plugin-react.js";
-import { base, baseTypeCheckedOnly } from "./base.js";
+import { base, type ConfigOptions } from "./base.js";
 
-export const react = (vite = false) => [
-  base,
-  reactPlugin,
-  importPluginReact,
-  jsxA11yPlugin,
-  reactHooksPlugin,
-  reactRefreshPlugin(vite),
-  reactCompilerPlugin,
-  {
+export interface ReactConfigOptions extends ConfigOptions {
+  vite?: boolean;
+}
+
+export function react({ vite = false, ...options }: ReactConfigOptions) {
+  return base({
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -27,9 +24,14 @@ export const react = (vite = false) => [
         version: "detect",
       },
     },
-  },
-];
-
-export function reactTypeChecked(tsconfig: string, vite = false) {
-  return [react(vite), baseTypeCheckedOnly(tsconfig)];
+    extends: [
+      ...reactPlugin,
+      importPluginReact,
+      jsxA11yPlugin,
+      ...reactHooksPlugin,
+      reactCompilerPlugin,
+      reactRefreshPlugin(vite),
+      options,
+    ],
+  });
 }

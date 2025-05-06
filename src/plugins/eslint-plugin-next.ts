@@ -1,5 +1,5 @@
 import eslintPluginNext from "@next/eslint-plugin-next";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const nextPlugin = {
   plugins: {
@@ -16,4 +16,4 @@ export const nextPlugin = {
       },
     ],
   },
-} satisfies InfiniteDepthConfigWithExtends;
+} satisfies ConfigWithExtends;

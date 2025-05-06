@@ -12,7 +12,9 @@
     "node"
   ],
   "homepage": "https://github.com/leogurja/eslint-config#readme",
-  "bugs": "https://github.com/leogurja/eslint-config/issues",
+  "bugs": {
+    "url": "https://github.com/leogurja/eslint-config/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leogurja/eslint-config.git"
@@ -28,6 +30,9 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "directories": {
+    "test": "test"
+  },
   "files": [
     "dist",
     "@types"
@@ -40,7 +45,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "@eslint/compat": "^1.2.3",
     "@eslint/js": "^9.14.0",
     "@humanwhocodes/gitignore-to-minimatch": "^1.0.2",
     "@next/eslint-plugin-next": "^15.0.3",
@@ -51,11 +55,12 @@
     "eslint-plugin-n": "^17.15.0",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-react": "^7.37.2",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-0dec889-20241115",
+    "eslint-plugin-react-compiler": "^19.1.0-rc.1",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "find-up": "^7.0.0",
-    "globals": "^15.12.0",
+    "globals": "^16.0.0",
+    "typescript": ">=5",
     "typescript-eslint": "^8.14.0"
   },
   "devDependencies": {
@@ -68,8 +73,7 @@
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.3",
     "ts-jest": "^29.2.5",
-    "tsup": "^8.3.5",
-    "typescript": "^5.6.3"
+    "tsup": "^8.3.5"
   },
   "peerDependencies": {
     "eslint": ">=9",

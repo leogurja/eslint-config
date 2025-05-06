@@ -1,5 +1,5 @@
 import eslintPluginPromise from "eslint-plugin-promise";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const promisePlugin = [
   eslintPluginPromise.configs["flat/recommended"],
@@ -10,4 +10,4 @@ export const promisePlugin = [
       "promise/no-multiple-resolved": "warn",
     },
   },
-] satisfies InfiniteDepthConfigWithExtends;
+] satisfies ConfigWithExtends[];

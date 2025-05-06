@@ -1,8 +1,8 @@
 import eslintPluginReactRefresh from "eslint-plugin-react-refresh";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
-export const reactRefreshPlugin = (vite: boolean) =>
-  ({
+export function reactRefreshPlugin(vite: boolean): ConfigWithExtends {
+  return {
     plugins: {
       "react-refresh": eslintPluginReactRefresh,
     },
@@ -12,4 +12,5 @@ export const reactRefreshPlugin = (vite: boolean) =>
         { allowConstantExport: vite },
       ],
     },
-  }) satisfies InfiniteDepthConfigWithExtends;
+  };
+}

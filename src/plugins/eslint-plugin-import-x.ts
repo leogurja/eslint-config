@@ -1,5 +1,5 @@
 import eslintPluginImport from "eslint-plugin-import-x";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const importPlugin = [
   {
@@ -13,18 +13,15 @@ export const importPlugin = [
       "import-x/no-unresolved": "off",
     },
   },
-  {
-    files: ["**/*.{ts,mts,cts}x?"],
-    ...eslintPluginImport.flatConfigs.typescript,
-  },
-] satisfies InfiniteDepthConfigWithExtends;
+  eslintPluginImport.flatConfigs.typescript,
+] satisfies ConfigWithExtends[];
 
 export const importPluginReact = {
   settings: eslintPluginImport.flatConfigs.react.settings,
-};
+} satisfies ConfigWithExtends;
 
 export const importPluginNext = {
   rules: {
     "import-x/no-default-export": "off",
   },
-} satisfies InfiniteDepthConfigWithExtends;
+} satisfies ConfigWithExtends;

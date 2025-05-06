@@ -1,5 +1,5 @@
 import eslintPluginN from "eslint-plugin-n";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const nPlugin = [
   eslintPluginN.configs["flat/recommended-module"],
@@ -17,4 +17,4 @@ export const nPlugin = [
       "n/prefer-node-protocol": "warn",
     },
   },
-] satisfies InfiniteDepthConfigWithExtends;
+] satisfies ConfigWithExtends[];

@@ -1,24 +1,15 @@
 import globals from "globals";
-import {
-  jestPlugin,
-  jestPluginTypeChecked,
-} from "../plugins/eslint-plugin-jest.js";
-import { base, baseTypeCheckedOnly } from "./base.js";
+import { jestPlugin } from "../plugins/eslint-plugin-jest.js";
+import { base, type ConfigOptions } from "./base.js";
 
-export const jest = [
-  base,
-  jestPlugin,
-  {
+export function jest({
+  tsconfig = "tsconfig.json",
+  ...options
+}: ConfigOptions) {
+  return base({
     languageOptions: {
       globals: globals.jest,
     },
-  },
-];
-
-export function jestTypeChecked(tsconfig: string) {
-  return [jest, baseTypeCheckedOnly(tsconfig), jestPluginTypeChecked(tsconfig)];
-}
-
-export function jestTypeCheckedOnly(tsconfig: string) {
-  return jestPluginTypeChecked(tsconfig);
+    extends: [jestPlugin(tsconfig), options],
+  });
 }

@@ -1,17 +1,12 @@
 import globals from "globals";
 import { nPlugin } from "../plugins/eslint-plugin-n.js";
-import { base, baseTypeCheckedOnly } from "./base.js";
+import { base, type ConfigOptions } from "./base.js";
 
-export const node = [
-  base,
-  nPlugin,
-  {
+export function node(options: ConfigOptions = {}) {
+  return base({
     languageOptions: {
       globals: globals.node,
     },
-  },
-];
-
-export function nodeTypeChecked(tsconfig: string) {
-  return [node, baseTypeCheckedOnly(tsconfig)];
+    extends: [...nPlugin, options],
+  });
 }

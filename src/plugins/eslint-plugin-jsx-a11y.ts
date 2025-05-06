@@ -1,5 +1,5 @@
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
-import type { InfiniteDepthConfigWithExtends } from "../types/infinite-depth-config-with-extends.js";
+import type { ConfigWithExtends } from "typescript-eslint";
 
 export const jsxA11yPlugin = eslintPluginJsxA11y.flatConfigs.strict;
 
@@ -13,4 +13,4 @@ export const jsxA11yPluginNext = {
       },
     ],
   },
-} satisfies InfiniteDepthConfigWithExtends;
+} satisfies ConfigWithExtends;
