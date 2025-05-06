@@ -1,9 +1,7 @@
 import eslintPluginJest from "eslint-plugin-jest";
-import { dirname } from "node:path";
 import type { ConfigWithExtends } from "typescript-eslint";
-import getTsConfigFiles from "../utils/getTsconfigFiles.js";
 
-export const defaultRules = [
+const defaultRules = [
   eslintPluginJest.configs["flat/style"],
   {
     rules: {
@@ -28,19 +26,21 @@ export const defaultRules = [
   },
 ] satisfies ConfigWithExtends[];
 
-export function jestPlugin(tsconfig: string): ConfigWithExtends[] {
+export function jestPlugin(typeLinting = true): ConfigWithExtends[] {
+  if (!typeLinting) return defaultRules;
+
   return [
     ...defaultRules,
     {
-      files: getTsConfigFiles(tsconfig),
       rules: {
         "jest/no-untyped-mock-factory": "warn",
         "jest/unbound-method": "error",
       },
       languageOptions: {
         parserOptions: {
-          project: tsconfig,
-          tsconfigRootDir: dirname(tsconfig),
+          projectService: {
+            allowDefaultProject: ["*.{js,cjs,mjs,ts,cts,mts}"],
+          },
         },
       },
     },

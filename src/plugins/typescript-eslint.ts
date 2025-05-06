@@ -1,6 +1,4 @@
-import { dirname } from "node:path";
 import ts, { type ConfigWithExtends } from "typescript-eslint";
-import getTsConfigFiles from "../utils/getTsconfigFiles.js";
 
 const defaultRules = [
   ...ts.configs.strict,
@@ -20,19 +18,20 @@ const defaultRules = [
   },
 ] satisfies ConfigWithExtends[];
 
-export function typescriptEslint(tsconfig: string): ConfigWithExtends[] {
+export function typescriptEslint(typeLinting = true): ConfigWithExtends[] {
+  if (!typeLinting) return defaultRules;
   return [
     ...defaultRules,
     {
-      files: getTsConfigFiles(tsconfig),
       extends: [
         ...ts.configs.strictTypeCheckedOnly,
         ...ts.configs.stylisticTypeCheckedOnly,
       ],
       languageOptions: {
         parserOptions: {
-          project: tsconfig,
-          tsconfigRootDir: dirname(tsconfig),
+          projectService: {
+            allowDefaultProject: ["*.{js,cjs,mjs,ts,cts,mts}"],
+          },
         },
       },
     },

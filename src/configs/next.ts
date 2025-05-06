@@ -4,8 +4,9 @@ import { nextPlugin } from "../plugins/eslint-plugin-next.js";
 import type { ConfigOptions } from "./base.js";
 import { react } from "./react.js";
 
-export function next(options: ConfigOptions) {
+export function next({ typeLinting, ...options }: ConfigOptions) {
   return react({
+    typeLinting,
     vite: true,
     extends: [nextPlugin, importPluginNext, jsxA11yPluginNext, options],
   });

@@ -63,18 +63,16 @@ import { base, next, globals } from "@gurja/eslint-config";
 export default [
   // by default it uses the tsconfig.json at the same level as the eslint config file
   ...base({
+    typeLinting: false, // typeLinting only works for files included by a tsconfig.json
     files: ["packages/jquery-app/**/*.js"],
     languageOptions: {
       globals: globals.jest,
     },
   }),
   ...next({
-    // you can use another tsconfig
-    tsconfig: "packages/next-project/tsconfig.json",
     files: ["packages/next-project/**/*.{ts,tsx,js,jsx}"],
     rules: {
-      // customize your rules if you find it necessary
-      "react-compiler/react-compiler": "off",
+      "react-compiler/react-compiler": "off", // customize your rules if you find it necessary
     },
   }),
 ];

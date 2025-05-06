@@ -8,17 +8,14 @@ import resolveIgnoresFromGitignore from "../utils/resolveGitIgnore.js";
 const ignores = await resolveIgnoresFromGitignore();
 
 export interface ConfigOptions extends ConfigWithExtends {
-  tsconfig?: string;
+  typeLinting?: boolean;
 }
 
-export function base({
-  tsconfig = "tsconfig.json",
-  ...options
-}: ConfigOptions) {
+export function base({ typeLinting, ...options }: ConfigOptions) {
   return config(
     { ignores },
     js.configs.recommended,
-    typescriptEslint(tsconfig),
+    typescriptEslint(typeLinting),
     // importPlugin,
     ...promisePlugin,
     jsdocPlugin,

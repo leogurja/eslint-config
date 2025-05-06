@@ -11,8 +11,13 @@ export interface ReactConfigOptions extends ConfigOptions {
   vite?: boolean;
 }
 
-export function react({ vite = false, ...options }: ReactConfigOptions) {
+export function react({
+  typeLinting,
+  vite = false,
+  ...options
+}: ReactConfigOptions) {
   return base({
+    typeLinting,
     languageOptions: {
       globals: {
         ...globals.browser,
