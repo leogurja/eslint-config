@@ -11,13 +11,13 @@ export interface ConfigOptions extends ConfigWithExtends {
   typeLinting?: boolean;
 }
 
-export function base({ typeLinting, ...options }: ConfigOptions) {
+export function base({ typeLinting, ...options }: ConfigOptions = {}) {
   return config(
     { ignores },
     js.configs.recommended,
     typescriptEslint(typeLinting),
     // importPlugin,
-    ...promisePlugin,
+    promisePlugin,
     jsdocPlugin,
     options,
   );

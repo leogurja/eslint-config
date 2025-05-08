@@ -8,6 +8,6 @@ export function node({ typeLinting, ...options }: ConfigOptions = {}) {
     languageOptions: {
       globals: globals.node,
     },
-    extends: [...nPlugin, options],
+    extends: [nPlugin, options],
   });
 }

@@ -3,7 +3,10 @@ import { importPluginReact } from "../plugins/eslint-plugin-import-x.js";
 import { jsxA11yPlugin } from "../plugins/eslint-plugin-jsx-a11y.js";
 import { reactCompilerPlugin } from "../plugins/eslint-plugin-react-compiler.js";
 import { reactHooksPlugin } from "../plugins/eslint-plugin-react-hooks.js";
-import { reactRefreshPlugin } from "../plugins/eslint-plugin-react-refresh.js";
+import {
+  reactRefreshPlugin,
+  reactRefreshPluginVite,
+} from "../plugins/eslint-plugin-react-refresh.js";
 import { reactPlugin } from "../plugins/eslint-plugin-react.js";
 import { base, type ConfigOptions } from "./base.js";
 
@@ -15,7 +18,7 @@ export function react({
   typeLinting,
   vite = false,
   ...options
-}: ReactConfigOptions) {
+}: ReactConfigOptions = {}) {
   return base({
     typeLinting,
     languageOptions: {
@@ -30,12 +33,12 @@ export function react({
       },
     },
     extends: [
-      ...reactPlugin,
+      reactPlugin,
       importPluginReact,
       jsxA11yPlugin,
-      ...reactHooksPlugin,
+      reactHooksPlugin,
       reactCompilerPlugin,
-      reactRefreshPlugin(vite),
+      vite ? reactRefreshPluginVite : reactRefreshPlugin,
       options,
     ],
   });

@@ -14,6 +14,7 @@ const defaultRules = [
         },
       ],
       "@typescript-eslint/no-import-type-side-effects": "error",
+      "@typescript-eslint/no-confusing-void-expression": "off",
     },
   },
 ] satisfies ConfigWithExtends[];
@@ -21,7 +22,6 @@ const defaultRules = [
 export function typescriptEslint(typeLinting = true): ConfigWithExtends[] {
   if (!typeLinting) return defaultRules;
   return [
-    ...defaultRules,
     {
       extends: [
         ...ts.configs.strictTypeCheckedOnly,
@@ -35,5 +35,6 @@ export function typescriptEslint(typeLinting = true): ConfigWithExtends[] {
         },
       },
     },
+    ...defaultRules,
   ];
 }
