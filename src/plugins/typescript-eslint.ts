@@ -14,7 +14,12 @@ const defaultRules = [
         },
       ],
       "@typescript-eslint/no-import-type-side-effects": "error",
-      "@typescript-eslint/no-confusing-void-expression": "off",
+      "@typescript-eslint/no-confusing-void-expression": [
+        "error",
+        {
+          ignoreArrowShorthand: true,
+        },
+      ],
     },
   },
 ] satisfies ConfigWithExtends[];
