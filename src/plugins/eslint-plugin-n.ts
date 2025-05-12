@@ -1,9 +1,10 @@
 import eslintPluginN from "eslint-plugin-n";
-import type { ConfigWithExtends } from "typescript-eslint";
+import { ConfigArray } from "typescript-eslint";
 
-export const nPlugin = [
+export const nPlugin: ConfigArray = [
   eslintPluginN.configs["flat/recommended-module"],
   {
+    name: "gurja/eslint-plugin-n",
     rules: {
       "n/no-path-concat": "warn",
       "n/no-sync": "warn",
@@ -17,4 +18,4 @@ export const nPlugin = [
       "n/prefer-node-protocol": "warn",
     },
   },
-] satisfies ConfigWithExtends[];
+];

@@ -1,13 +1,13 @@
 import globals from "globals";
+import { ConfigArray } from "typescript-eslint";
 import { nPlugin } from "../plugins/eslint-plugin-n.js";
-import { base, type ConfigOptions } from "./base.js";
 
-export function node({ typeLinting, ...options }: ConfigOptions = {}) {
-  return base({
-    typeLinting,
+export const node: ConfigArray = [
+  {
+    name: "gurja/node",
     languageOptions: {
       globals: globals.node,
     },
-    extends: [nPlugin, options],
-  });
-}
+  },
+  nPlugin,
+].flat();

@@ -1,8 +1,9 @@
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import type { ConfigWithExtends } from "typescript-eslint";
+import { ConfigArray } from "typescript-eslint";
 
-export const reactHooksPlugin = [
+export const reactHooksPlugin: ConfigArray = [
   {
+    name: "gurja/eslint-plugin-react-hooks",
     plugins: {
       "react-hooks": eslintPluginReactHooks,
     },
@@ -11,4 +12,4 @@ export const reactHooksPlugin = [
       "react-hooks/exhaustive-deps": "warn",
     },
   },
-] satisfies ConfigWithExtends[];
+];

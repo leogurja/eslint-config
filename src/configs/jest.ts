@@ -1,13 +1,13 @@
 import globals from "globals";
+import { ConfigArray } from "typescript-eslint";
 import { jestPlugin } from "../plugins/eslint-plugin-jest.js";
-import { base, type ConfigOptions } from "./base.js";
 
-export function jest({ typeLinting, ...options }: ConfigOptions = {}) {
-  return base({
-    typeLinting,
+export const jest: ConfigArray = [
+  {
+    name: "gurja/jest",
     languageOptions: {
       globals: globals.jest,
     },
-    extends: [jestPlugin(typeLinting), options],
-  });
-}
+  },
+  jestPlugin,
+].flat();

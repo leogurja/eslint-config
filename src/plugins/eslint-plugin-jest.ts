@@ -1,9 +1,10 @@
 import eslintPluginJest from "eslint-plugin-jest";
-import type { ConfigWithExtends } from "typescript-eslint";
+import { ConfigArray } from "typescript-eslint";
 
-const defaultRules = [
+export const jestPlugin: ConfigArray = [
   eslintPluginJest.configs["flat/style"],
   {
+    name: "gurja/eslint-plugin-jest",
     rules: {
       "jest/consistent-test-it": "warn",
       "jest/no-conditional-in-test": "error",
@@ -22,27 +23,9 @@ const defaultRules = [
       "jest/prefer-strict-equal": "warn",
       "jest/prefer-todo": "warn",
       "jest/require-hook": "error",
+      // typeLinting required rules
+      "jest/no-untyped-mock-factory": "warn",
+      "jest/unbound-method": "error",
     },
   },
-] satisfies ConfigWithExtends[];
-
-export function jestPlugin(typeLinting = true): ConfigWithExtends[] {
-  if (!typeLinting) return defaultRules;
-
-  return [
-    ...defaultRules,
-    {
-      rules: {
-        "jest/no-untyped-mock-factory": "warn",
-        "jest/unbound-method": "error",
-      },
-      languageOptions: {
-        parserOptions: {
-          projectService: {
-            allowDefaultProject: ["*.{js,cjs,mjs,ts,cts,mts}"],
-          },
-        },
-      },
-    },
-  ];
-}
+];

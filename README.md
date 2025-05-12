@@ -21,12 +21,12 @@ pnpm add -D @gurja/eslint-config eslint
 Inside `eslint.config.js` (or `eslint.config.mjs` if you don't have `"type": "module"` on your `package.json`):
 
 ```javascript
-import { react } from "@gurja/eslint-config";
+import { config, configs } from "@gurja/eslint-config";
 
-export default react({
-  vite: true
+export default config(
+  configs.react({ vite: true }),
   // any other ESLint config you'd want to add as well
-}),
+);
 ```
 
 ## Available Configs
@@ -58,22 +58,27 @@ Here's a kitchen sink example:
 
 ```javascript
 // eslint.configs.mjs
-import { base, next, globals } from "@gurja/eslint-config";
+import { config, configs, globals } from "@gurja/eslint-config";
 
-export default [
-  // by default it uses the tsconfig.json at the same level as the eslint config file
-  ...base({
-    typeLinting: false, // typeLinting only works for files included by a tsconfig.json
+export default config(
+  // by default it uses the tsconfig.json at the same level as the eslint config file for type linting
+  {
     files: ["packages/jquery-app/**/*.js"],
     languageOptions: {
-      globals: globals.jest,
+      globals: globals.jquery,
     },
-  }),
-  ...next({
+  },
+  {
+    files: ["packages/react-project/**/*.{ts,tsx}"],
+    extends: configs.react({ vite: true }),
+  },
+  {
     files: ["packages/next-project/**/*.{ts,tsx,js,jsx}"],
+    extends: configs.next,
     rules: {
       "react-compiler/react-compiler": "off", // customize your rules if you find it necessary
     },
-  }),
-];
+  },
+  configs.disableTypeChecking, // you can disable type linting, make sure to user this at the end
+);
 ```

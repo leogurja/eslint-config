@@ -1,11 +1,14 @@
 import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
-import type { ConfigWithExtends } from "typescript-eslint";
+import { ConfigArray } from "typescript-eslint";
 
-export const reactCompilerPlugin = {
-  plugins: {
-    "react-compiler": eslintPluginReactCompiler,
+export const reactCompilerPlugin: ConfigArray = [
+  {
+    name: "gurja/eslint-plugin-react-compiler",
+    plugins: {
+      "react-compiler": eslintPluginReactCompiler,
+    },
+    rules: {
+      "react-compiler/react-compiler": "error",
+    },
   },
-  rules: {
-    "react-compiler/react-compiler": "error",
-  },
-} satisfies ConfigWithExtends;
+];
