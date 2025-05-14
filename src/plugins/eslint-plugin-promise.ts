@@ -1,5 +1,5 @@
 import eslintPluginPromise from "eslint-plugin-promise";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const promisePlugin: ConfigArray = [
   eslintPluginPromise.configs["flat/recommended"],

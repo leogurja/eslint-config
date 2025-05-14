@@ -1,6 +1,5 @@
 import globals from "globals";
-import { ConfigArray } from "typescript-eslint";
-import { importPluginReact } from "../plugins/eslint-plugin-import-x.js";
+import type { ConfigArray } from "typescript-eslint";
 import { jsxA11yPlugin } from "../plugins/eslint-plugin-jsx-a11y.js";
 import { reactCompilerPlugin } from "../plugins/eslint-plugin-react-compiler.js";
 import { reactHooksPlugin } from "../plugins/eslint-plugin-react-hooks.js";
@@ -31,7 +30,6 @@ export const react = ({ vite = false }: ReactConfigOptions = {}): ConfigArray =>
       },
     },
     reactPlugin,
-    importPluginReact,
     jsxA11yPlugin,
     reactHooksPlugin,
     reactCompilerPlugin,

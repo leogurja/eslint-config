@@ -1,9 +1,8 @@
 import js from "@eslint/js";
 import {
-  InfiniteDepthConfigWithExtends,
+  type InfiniteDepthConfigWithExtends,
   config as typescriptEslintConfig,
 } from "typescript-eslint";
-import { importPlugin } from "./plugins/eslint-plugin-import-x.js";
 import { jsdocPlugin } from "./plugins/eslint-plugin-jsdoc.js";
 import { promisePlugin } from "./plugins/eslint-plugin-promise.js";
 import { typescriptEslint } from "./plugins/typescript-eslint.js";
@@ -29,7 +28,6 @@ export function config(...configs: InfiniteDepthConfigWithExtends[]) {
     },
     js.configs.recommended,
     typescriptEslint,
-    importPlugin,
     promisePlugin,
     jsdocPlugin,
     configs,

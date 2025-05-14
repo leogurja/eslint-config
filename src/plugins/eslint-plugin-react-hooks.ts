@@ -1,5 +1,5 @@
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const reactHooksPlugin: ConfigArray = [
   {

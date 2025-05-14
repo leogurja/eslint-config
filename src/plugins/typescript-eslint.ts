@@ -1,4 +1,4 @@
-import ts, { ConfigArray } from "typescript-eslint";
+import ts, { type ConfigArray } from "typescript-eslint";
 
 // had to add this type annotation (?)
 const defaultConfig: ConfigArray[number] = {

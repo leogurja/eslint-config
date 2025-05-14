@@ -1,5 +1,5 @@
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const jsxA11yPlugin: ConfigArray = [
   eslintPluginJsxA11y.flatConfigs.strict,

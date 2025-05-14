@@ -1,5 +1,5 @@
 import eslintPluginJest from "eslint-plugin-jest";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const jestPlugin: ConfigArray = [
   eslintPluginJest.configs["flat/style"],

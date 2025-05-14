@@ -1,5 +1,5 @@
 import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const reactCompilerPlugin: ConfigArray = [
   {

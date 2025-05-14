@@ -1,5 +1,5 @@
 import globals from "globals";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 import { jestPlugin } from "../plugins/eslint-plugin-jest.js";
 
 export const jest: ConfigArray = [

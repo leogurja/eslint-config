@@ -1,5 +1,5 @@
 import eslintPluginN from "eslint-plugin-n";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const nPlugin: ConfigArray = [
   eslintPluginN.configs["flat/recommended-module"],

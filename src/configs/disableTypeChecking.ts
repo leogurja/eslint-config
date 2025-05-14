@@ -1,4 +1,4 @@
-import { ConfigArray, configs } from "typescript-eslint";
+import { type ConfigArray, configs } from "typescript-eslint";
 
 export const disableTypeChecking: ConfigArray = [
   configs.disableTypeChecked,

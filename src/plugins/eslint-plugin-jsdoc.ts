@@ -1,5 +1,5 @@
 import eslintPluginJsdoc from "eslint-plugin-jsdoc";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const jsdocPlugin: ConfigArray = [
   eslintPluginJsdoc.configs["flat/contents-typescript"],

@@ -1,5 +1,5 @@
 import eslintPluginNext from "@next/eslint-plugin-next";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 export const nextPlugin: ConfigArray = [
   {

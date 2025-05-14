@@ -1,5 +1,5 @@
 import eslintPluginReactRefresh from "eslint-plugin-react-refresh";
-import { ConfigArray } from "typescript-eslint";
+import type { ConfigArray } from "typescript-eslint";
 
 const defaultRules = {
   name: "gurja/eslint-plugin-react-refresh",
