@@ -26,6 +26,26 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./node": {
+      "import": "./dist/node.js",
+      "types": "./dist/node.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react.js",
+      "types": "./dist/react.d.ts"
+    },
+    "./next": {
+      "import": "./dist/next.js",
+      "types": "./dist/next.d.ts"
+    },
+    "./disableTypeChecking": {
+      "import": "./dist/disableTypeChecking.js",
+      "types": "./dist/disableTypeChecking.d.ts"
+    },
+    "./jest": {
+      "import": "./dist/jest.js",
+      "types": "./dist/jest.d.ts"
     }
   },
   "main": "./dist/index.js",

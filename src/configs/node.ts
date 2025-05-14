@@ -1,8 +1,8 @@
 import globals from "globals";
 import type { ConfigArray } from "typescript-eslint";
-import { nPlugin } from "../plugins/eslint-plugin-n.js";
+import nPlugin from "../plugins/eslint-plugin-n.js";
 
-export const node: ConfigArray = [
+export default [
   {
     name: "gurja/node",
     languageOptions: {
@@ -10,4 +10,4 @@ export const node: ConfigArray = [
     },
   },
   nPlugin,
-].flat();
+].flat() satisfies ConfigArray;

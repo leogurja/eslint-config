@@ -1,6 +1,6 @@
 import { type ConfigArray, configs } from "typescript-eslint";
 
-export const disableTypeChecking: ConfigArray = [
+export default [
   configs.disableTypeChecked,
   {
     name: "gurja/eslint-plugin-jest/disable-type-checking",
@@ -9,4 +9,4 @@ export const disableTypeChecking: ConfigArray = [
       "jest/unbound-method": "off",
     },
   },
-];
+] satisfies ConfigArray;

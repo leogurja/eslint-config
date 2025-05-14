@@ -1,8 +1,8 @@
 import globals from "globals";
 import type { ConfigArray } from "typescript-eslint";
-import { jestPlugin } from "../plugins/eslint-plugin-jest.js";
+import jestPlugin from "../plugins/eslint-plugin-jest.js";
 
-export const jest: ConfigArray = [
+export default [
   {
     name: "gurja/jest",
     languageOptions: {
@@ -10,4 +10,4 @@ export const jest: ConfigArray = [
     },
   },
   jestPlugin,
-].flat();
+].flat() satisfies ConfigArray;

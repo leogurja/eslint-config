@@ -8,7 +8,7 @@ const defaultRules = {
   },
 };
 
-export const reactRefreshPlugin: ConfigArray = [
+export default [
   defaultRules,
   {
     name: "gurja/eslint-plugin-react-refresh/default",
@@ -19,7 +19,7 @@ export const reactRefreshPlugin: ConfigArray = [
       ],
     },
   },
-];
+] satisfies ConfigArray;
 
 export const reactRefreshPluginVite: ConfigArray = [
   defaultRules,

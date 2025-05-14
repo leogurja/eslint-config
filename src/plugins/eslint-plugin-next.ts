@@ -1,7 +1,7 @@
 import eslintPluginNext from "@next/eslint-plugin-next";
 import type { ConfigArray } from "typescript-eslint";
 
-export const nextPlugin: ConfigArray = [
+export default [
   {
     name: "gurja/eslint-plugin-next",
     plugins: {
@@ -9,4 +9,4 @@ export const nextPlugin: ConfigArray = [
     },
     rules: eslintPluginNext.configs["core-web-vitals"].rules,
   },
-];
+] satisfies ConfigArray;

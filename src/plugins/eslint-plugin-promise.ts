@@ -1,7 +1,7 @@
 import eslintPluginPromise from "eslint-plugin-promise";
 import type { ConfigArray } from "typescript-eslint";
 
-export const promisePlugin: ConfigArray = [
+export default [
   eslintPluginPromise.configs["flat/recommended"],
   {
     name: "gurja/eslint-plugin-promise",
@@ -11,4 +11,4 @@ export const promisePlugin: ConfigArray = [
       "promise/no-multiple-resolved": "warn",
     },
   },
-];
+] satisfies ConfigArray;

@@ -22,8 +22,8 @@ const defaultConfig: ConfigArray[number] = {
   },
 };
 
-export const typescriptEslint: ConfigArray = [
+export default [
   ts.configs.strictTypeChecked,
   ts.configs.stylisticTypeChecked,
   defaultConfig,
-].flat();
+].flat() satisfies ConfigArray;

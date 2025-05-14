@@ -58,7 +58,10 @@ Here's a kitchen sink example:
 
 ```javascript
 // eslint.configs.mjs
-import { config, configs, globals } from "@gurja/eslint-config";
+import config, { globals } from "@gurja/eslint-config";
+import react from "@gurja/eslint-config/react";
+import next from "@gurja/eslint-config/next";
+import disableTypeChecking from "@gurja/eslint-config/disableTypeChecking";
 
 export default config(
   // by default it uses the tsconfig.json at the same level as the eslint config file for type linting
@@ -70,15 +73,15 @@ export default config(
   },
   {
     files: ["packages/react-project/**/*.{ts,tsx}"],
-    extends: configs.react({ vite: true }),
+    extends: react({ vite: true }),
   },
   {
     files: ["packages/next-project/**/*.{ts,tsx,js,jsx}"],
-    extends: configs.next,
+    extends: next,
     rules: {
       "react-compiler/react-compiler": "off", // customize your rules if you find it necessary
     },
   },
-  configs.disableTypeChecking, // you can disable type linting, make sure to user this at the end
+  disableTypeChecking, // you can disable type linting, make sure to user this at the end
 );
 ```

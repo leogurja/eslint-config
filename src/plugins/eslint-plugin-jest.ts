@@ -1,7 +1,7 @@
 import eslintPluginJest from "eslint-plugin-jest";
 import type { ConfigArray } from "typescript-eslint";
 
-export const jestPlugin: ConfigArray = [
+export default [
   eslintPluginJest.configs["flat/style"],
   {
     name: "gurja/eslint-plugin-jest",
@@ -28,4 +28,4 @@ export const jestPlugin: ConfigArray = [
       "jest/unbound-method": "error",
     },
   },
-];
+] satisfies ConfigArray;
