@@ -102,5 +102,8 @@
     "typescript": {
       "optional": true
     }
+  },
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   }
 }
