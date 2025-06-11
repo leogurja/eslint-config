@@ -1,6 +1,6 @@
 {
   "name": "@gurja/eslint-config",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "A simple to use ESlint configuration",
   "keywords": [
     "eslint",
