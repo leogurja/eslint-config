@@ -23,7 +23,7 @@ export default function config(...configs: InfiniteDepthConfigWithExtends[]) {
       languageOptions: {
         parserOptions: {
           projectService: {
-            allowDefaultProject: ["*.{js,cjs,mjs}"],
+            allowDefaultProject: ["*.config.{js,cjs,mjs,ts,cts,mts}"],
           },
         },
       },
