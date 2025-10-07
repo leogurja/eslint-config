@@ -1,7 +1,7 @@
 import eslintPluginNext from "@next/eslint-plugin-next";
-import type { Linter } from "eslint";
+import type { Config } from "../types/config.js";
 
-export const nextPlugin: Linter.Config[] = [
+export const nextPlugin: Config[] = [
   {
     name: "gurja/eslint-plugin-next",
     plugins: {

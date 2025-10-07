@@ -1,7 +1,7 @@
-import type { Linter } from "eslint";
 import eslintPluginJest from "eslint-plugin-jest";
+import type { Config } from "../types/config.js";
 
-export const jestPlugin: Linter.Config[] = [
+export const jestPlugin: Config[] = [
   eslintPluginJest.configs["flat/style"],
   {
     name: "gurja/eslint-plugin-jest",

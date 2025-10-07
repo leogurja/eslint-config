@@ -21,11 +21,12 @@ pnpm add -D @gurja/eslint-config eslint
 Inside `eslint.config.js` (or `eslint.config.mjs` if you don't have `"type": "module"` on your `package.json`):
 
 ```javascript
-import config from "@gurja/eslint-config";
+import { config, base } from "@gurja/eslint-config";
 import react from "@gurja/eslint-config/react";
 
 export default config(
-  react({ vite: true }),
+  base(),
+  react(),
   // any other ESLint config you'd want to add as well
 );
 ```
@@ -39,19 +40,30 @@ It includes the ESLint recommended rules and TypeScript ESLint's recommended, st
 
 ### Node
 
-Just like Base, but also includes the Node globals
+Includes nodejs globals and:
+
+- [eslint-plugin-n](https://github.com/eslint-community/eslint-plugin-n?tab=readme-ov-file#eslint-plugin-n)
 
 ### React
 
-Includes [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react#readme), [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#readme), [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme) and [eslint-plugin-react-compiler](https://react.dev/learn/react-compiler#getting-started)
+Includes browser and service worker globals, and:
+
+- [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react#readme)
+- [eslint-plugin-react-hooks](https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#readme)
+- [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme)
+- [eslint-plugin-react-compiler](https://react.dev/learn/react-compiler#getting-started)
 
 ### Next
 
-Includes all of [React's](#react) plugins, and [@next/eslint-plugin-next](https://nextjs.org/docs/app/api-reference/config/eslint)
+Includes all of [React's](#react) plugins, and:
+
+- [@next/eslint-plugin-next](https://nextjs.org/docs/app/api-reference/config/eslint)
 
 ### Jest
 
-Includes all of Base, and [eslint-plugin-jest](https://github.com/jest-community/eslint-plugin-jest#readme)
+Includes jest globals, and:
+
+- [eslint-plugin-jest](https://github.com/jest-community/eslint-plugin-jest#readme)
 
 ## Advanced Setup
 
@@ -59,13 +71,17 @@ Here's a kitchen sink example:
 
 ```javascript
 // eslint.configs.mjs
-import config, { globals } from "@gurja/eslint-config";
+import { config, globals, base } from "@gurja/eslint-config";
 import react from "@gurja/eslint-config/react";
 import next from "@gurja/eslint-config/next";
-import disableTypeChecking from "@gurja/eslint-config/disableTypeChecking";
+import jest from "@gurja/eslint-config/jest";
 
+// by default it uses the tsconfig.json at the same level as the eslint config file for type linting
 export default config(
-  // by default it uses the tsconfig.json at the same level as the eslint config file for type linting
+  base({ allowDefaultProject: ['*.config.js'] }), // allowDefaultProject can't include '**' patterns
+  react({ files: ["packages/react-project/**/*.{ts,tsx}"] }),
+  next({ files: ["packages/next-project/**/*.{ts,tsx,js,jsx}"] }), // next already includes react's rules
+  jest({ disableTypeChecking: true, files: ["**/*.{test,spec}.{ts,tsx}"] }),
   {
     files: ["packages/jquery-app/**/*.js"],
     languageOptions: {
@@ -73,16 +89,9 @@ export default config(
     },
   },
   {
-    files: ["packages/react-project/**/*.{ts,tsx}"],
-    extends: react({ vite: true }),
-  },
-  {
-    files: ["packages/next-project/**/*.{ts,tsx,js,jsx}"],
-    extends: next,
     rules: {
       "react-compiler/react-compiler": "off", // customize your rules if you find it necessary
-    },
-  },
-  disableTypeChecking, // you can disable type linting, make sure to user this at the end
+    }
+  }
 );
 ```

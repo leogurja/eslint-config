@@ -1,7 +1,7 @@
-import type { Linter } from "eslint";
 import ts from "typescript-eslint";
+import type { Config } from "../types/config.js";
 
-const defaultConfig: Linter.Config = {
+const defaultConfig: Config = {
   name: "gurja/typescript-eslint",
   rules: {
     "@typescript-eslint/consistent-type-imports": [
@@ -22,7 +22,7 @@ const defaultConfig: Linter.Config = {
   },
 };
 
-export const typescriptEslint: Linter.Config[] = [
+export const typescriptEslint: Config[] = [
   ...ts.configs.strictTypeChecked,
   ...ts.configs.stylisticTypeChecked,
   defaultConfig,

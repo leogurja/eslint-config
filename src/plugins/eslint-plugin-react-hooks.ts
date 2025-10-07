@@ -1,7 +1,7 @@
-import type { Linter } from "eslint";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+import type { Config } from "../types/config.js";
 
-export const reactHooksPlugin: Linter.Config[] = [
+export const reactHooksPlugin: Config[] = [
   {
     name: "gurja/eslint-plugin-react-hooks",
     plugins: {

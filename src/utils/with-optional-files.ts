@@ -1,10 +1,10 @@
-import type { Linter } from "eslint";
 import { defineConfig } from "eslint/config";
+import type { Config } from "../types/config.js";
 
 export default function withOptionalFiles(
-  configs: Linter.Config[],
+  configs: Config[],
   files: string[] | undefined,
-): Linter.Config[] {
+): Config[] {
   if (files != null) return defineConfig({ files, extends: configs });
   return configs;
 }

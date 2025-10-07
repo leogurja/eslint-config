@@ -1,7 +1,7 @@
-import type { Linter } from "eslint";
 import eslintPluginN from "eslint-plugin-n";
+import type { Config } from "../types/config.js";
 
-export const nodePlugin: Linter.Config[] = [
+export const nodePlugin: Config[] = [
   eslintPluginN.configs["flat/recommended-module"],
   {
     name: "gurja/eslint-plugin-n",

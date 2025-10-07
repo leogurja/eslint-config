@@ -1,7 +1,7 @@
-import type { Linter } from "eslint";
 import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
+import type { Config } from "../types/config.js";
 
-export const reactCompilerPlugin: Linter.Config[] = [
+export const reactCompilerPlugin: Config[] = [
   {
     name: "gurja/eslint-plugin-react-compiler",
     plugins: {
