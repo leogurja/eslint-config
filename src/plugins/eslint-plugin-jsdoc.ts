@@ -1,8 +1,8 @@
+import type { Linter } from "eslint";
 import eslintPluginJsdoc from "eslint-plugin-jsdoc";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [
+export const jsdocPlugin: Linter.Config[] = [
   eslintPluginJsdoc.configs["flat/contents-typescript"],
   eslintPluginJsdoc.configs["flat/logical-typescript"],
   eslintPluginJsdoc.configs["flat/stylistic-typescript"],
-] satisfies ConfigArray;
+];

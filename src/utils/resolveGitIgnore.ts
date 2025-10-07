@@ -7,9 +7,9 @@ const FLAT_CONFIG_FILENAMES = [
   "eslint.config.js",
   "eslint.config.mjs",
   "eslint.config.cjs",
-];
+] as const;
 
-export default async function resolveIgnoresFromGitignore() {
+export async function resolveIgnoresFromGitignore() {
   const configFile = await findUp(FLAT_CONFIG_FILENAMES);
 
   if (!configFile) {

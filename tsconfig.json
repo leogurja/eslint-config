@@ -10,7 +10,8 @@
     "declaration": true,
     "allowJs": true,
     "outDir": "dist",
+    "checkJs": true,
     "strict": true /* Enable all strict type-checking options. */
   },
-  "include": ["src", "@types"]
+  "exclude": ["node_modules", "dist"]
 }

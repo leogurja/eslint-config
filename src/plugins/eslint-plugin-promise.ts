@@ -1,7 +1,7 @@
+import type { Linter } from "eslint";
 import eslintPluginPromise from "eslint-plugin-promise";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [
+export const promisePlugin: Linter.Config[] = [
   eslintPluginPromise.configs["flat/recommended"],
   {
     name: "gurja/eslint-plugin-promise",
@@ -11,4 +11,4 @@ export default [
       "promise/no-multiple-resolved": "warn",
     },
   },
-] satisfies ConfigArray;
+];

@@ -1,7 +1,7 @@
+import type { Linter } from "eslint";
 import eslintPluginReactCompiler from "eslint-plugin-react-compiler";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [
+export const reactCompilerPlugin: Linter.Config[] = [
   {
     name: "gurja/eslint-plugin-react-compiler",
     plugins: {
@@ -11,4 +11,4 @@ export default [
       "react-compiler/react-compiler": "error",
     },
   },
-] satisfies ConfigArray;
+];

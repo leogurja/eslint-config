@@ -1,29 +1,29 @@
-import ts, { type ConfigArray } from "typescript-eslint";
+import type { Linter } from "eslint";
+import ts from "typescript-eslint";
 
-// had to add this type annotation (?)
-const defaultConfig: ConfigArray[number] = {
+const defaultConfig: Linter.Config = {
   name: "gurja/typescript-eslint",
   rules: {
     "@typescript-eslint/consistent-type-imports": [
-      "error",
+      "warn",
       {
         disallowTypeAnnotations: true,
         prefer: "type-imports",
         fixStyle: "inline-type-imports",
       },
     ],
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "@typescript-eslint/no-import-type-side-effects": "error",
-    "@typescript-eslint/no-confusing-void-expression": [
+    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-misused-promises": [
       "error",
-      {
-        ignoreArrowShorthand: true,
-      },
+      { checksVoidReturn: { attributes: false } },
     ],
   },
 };
 
-export default [
-  ts.configs.strictTypeChecked,
-  ts.configs.stylisticTypeChecked,
+export const typescriptEslint: Linter.Config[] = [
+  ...ts.configs.strictTypeChecked,
+  ...ts.configs.stylisticTypeChecked,
   defaultConfig,
-].flat() satisfies ConfigArray;
+];

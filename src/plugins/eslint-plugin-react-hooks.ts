@@ -1,7 +1,7 @@
+import type { Linter } from "eslint";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [
+export const reactHooksPlugin: Linter.Config[] = [
   {
     name: "gurja/eslint-plugin-react-hooks",
     plugins: {
@@ -12,4 +12,4 @@ export default [
       "react-hooks/exhaustive-deps": "warn",
     },
   },
-] satisfies ConfigArray;
+];

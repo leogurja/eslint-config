@@ -3,11 +3,10 @@ import { defineConfig } from "tsup";
 const config = defineConfig({
   entry: {
     index: "src/index.ts",
+    jest: "src/configs/jest.ts",
     next: "src/configs/next.ts",
     node: "src/configs/node.ts",
-    jest: "src/configs/jest.ts",
     react: "src/configs/react.ts",
-    disableTypeChecking: "src/configs/disableTypeChecking.ts",
   },
   clean: true,
   cjsInterop: true,

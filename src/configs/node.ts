@@ -1,13 +1,22 @@
 import globals from "globals";
-import type { ConfigArray } from "typescript-eslint";
-import nPlugin from "../plugins/eslint-plugin-n.js";
+import { nodePlugin } from "../plugins/eslint-plugin-n.js";
+import withOptionalFiles from "../utils/with-optional-files.js";
+import type { CommonOptions } from "./common-options.js";
 
-export default [
-  {
-    name: "gurja/node",
-    languageOptions: {
-      globals: globals.node,
-    },
-  },
-  nPlugin,
-].flat() satisfies ConfigArray;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface NodeOptions extends CommonOptions {}
+
+export default function node({ files }: NodeOptions = {}) {
+  return withOptionalFiles(
+    [
+      {
+        name: "gurja/node",
+        languageOptions: {
+          globals: globals.node,
+        },
+      },
+      nodePlugin,
+    ].flat(),
+    files,
+  );
+}

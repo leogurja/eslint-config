@@ -1,37 +1,3 @@
-import js from "@eslint/js";
-import {
-  type InfiniteDepthConfigWithExtends,
-  config as typescriptEslintConfig,
-} from "typescript-eslint";
-import jsdocPlugin from "./plugins/eslint-plugin-jsdoc.js";
-import promisePlugin from "./plugins/eslint-plugin-promise.js";
-import typescriptEslint from "./plugins/typescript-eslint.js";
-import resolveIgnoresFromGitignore from "./utils/resolveGitIgnore.js";
-
-const ignores = await resolveIgnoresFromGitignore();
-
+export { defineConfig as config } from "eslint/config";
 export { default as globals } from "globals";
-
-export default function config(...configs: InfiniteDepthConfigWithExtends[]) {
-  return typescriptEslintConfig(
-    {
-      name: "gurja/global-ignores",
-      ignores,
-    },
-    {
-      name: "gurja/base",
-      languageOptions: {
-        parserOptions: {
-          projectService: {
-            allowDefaultProject: ["*.config.{js,cjs,mjs,ts,cts,mts}"],
-          },
-        },
-      },
-    },
-    js.configs.recommended,
-    typescriptEslint,
-    promisePlugin,
-    jsdocPlugin,
-    configs,
-  );
-}
+export { default as base } from "./configs/base.js";

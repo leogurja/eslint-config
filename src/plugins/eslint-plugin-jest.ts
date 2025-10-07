@@ -1,7 +1,7 @@
+import type { Linter } from "eslint";
 import eslintPluginJest from "eslint-plugin-jest";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [
+export const jestPlugin: Linter.Config[] = [
   eslintPluginJest.configs["flat/style"],
   {
     name: "gurja/eslint-plugin-jest",
@@ -28,4 +28,4 @@ export default [
       "jest/unbound-method": "error",
     },
   },
-] satisfies ConfigArray;
+];

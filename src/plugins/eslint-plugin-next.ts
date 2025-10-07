@@ -1,7 +1,7 @@
 import eslintPluginNext from "@next/eslint-plugin-next";
-import type { ConfigArray } from "typescript-eslint";
+import type { Linter } from "eslint";
 
-export default [
+export const nextPlugin: Linter.Config[] = [
   {
     name: "gurja/eslint-plugin-next",
     plugins: {
@@ -9,4 +9,4 @@ export default [
     },
     rules: eslintPluginNext.configs["core-web-vitals"].rules,
   },
-] satisfies ConfigArray;
+];

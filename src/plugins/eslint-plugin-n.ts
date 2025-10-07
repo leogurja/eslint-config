@@ -1,7 +1,7 @@
+import type { Linter } from "eslint";
 import eslintPluginN from "eslint-plugin-n";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [
+export const nodePlugin: Linter.Config[] = [
   eslintPluginN.configs["flat/recommended-module"],
   {
     name: "gurja/eslint-plugin-n",
@@ -18,4 +18,4 @@ export default [
       "n/prefer-node-protocol": "warn",
     },
   },
-] satisfies ConfigArray;
+];

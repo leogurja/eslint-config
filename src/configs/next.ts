@@ -1,12 +1,14 @@
-import type { ConfigArray } from "typescript-eslint";
 import { jsxA11yPluginNext } from "../plugins/eslint-plugin-jsx-a11y.js";
-import nextPlugin from "../plugins/eslint-plugin-next.js";
-import { reactRefreshPluginNext } from "../plugins/eslint-plugin-react-refresh.js";
-import react from "./react.js";
+import { nextPlugin } from "../plugins/eslint-plugin-next.js";
+import withOptionalFiles from "../utils/with-optional-files.js";
+import react, { type ReactOptions } from "./react.js";
 
-export default [
-  react({ vite: true }),
-  nextPlugin,
-  jsxA11yPluginNext,
-  reactRefreshPluginNext,
-].flat() satisfies ConfigArray;
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface NextOptions extends ReactOptions {}
+
+export default function next({ files, ...reactOptions }: NextOptions = {}) {
+  return withOptionalFiles(
+    [react(reactOptions), nextPlugin, jsxA11yPluginNext].flat(),
+    files,
+  );
+}

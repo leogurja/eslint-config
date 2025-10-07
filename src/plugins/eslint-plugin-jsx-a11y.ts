@@ -1,9 +1,11 @@
+import type { Linter } from "eslint";
 import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
-import type { ConfigArray } from "typescript-eslint";
 
-export default [eslintPluginJsxA11y.flatConfigs.strict] satisfies ConfigArray;
+export const jsxA11yPlugin: Linter.Config[] = [
+  eslintPluginJsxA11y.flatConfigs.strict,
+];
 
-export const jsxA11yPluginNext: ConfigArray = [
+export const jsxA11yPluginNext: Linter.Config[] = [
   {
     name: "gurja/eslint-plugin-jsx-a11y/next",
     rules: {
